@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 from astropy.io import fits
 from astropy import table
 from astropy.wcs import WCS,utils
@@ -51,15 +48,11 @@ def spline_u(ra,dec): #parametric spline function
     l = (dp**2).sum(axis=0)
     u_cord = np.sqrt(l).cumsum()
     u_cord = np.r_[0, u_cord] #np.r_ Translates slice objects to join arrays along the first axis.
-    #u_c = np.r_[0, u_cord]
+ 
   
     u_c = np.linspace(0, u_cord.max(), 200)
-   # print(u_cord)
-    #print(u_c)
     u_test = np.linspace(0, len(ra)-1, 200) #parametric co-ords, evaluated on fine grid
-   #fig, ax = plt.subplots(1, 2, figsize=(8, 3))
-    #parametrizations = ['uniform', 'cord length', 'centripetal']
-   
+
     spline = make_interp_spline(u, p.T, bc_type="natural") #.T transposes result to unpack into a pair of x, y coord
     xnew_u, ynew_u = spline(u_test).T 
     
@@ -172,13 +165,10 @@ def SB(source_name, pixels,points,lengths):
     return distance, average, difference
 
 def spline(x,y):
-   # print(x)
     p = np.array([x,y])
     a= np.arange(len(x))
     z= np.linspace(0, len(x), 200)
     
     spl =make_interp_spline(a, p.T, bc_type="natural")
     x_new,y_new = spl(z).T
-   
-    #print(x_new,y_new)
     return x_new, y_new

@@ -28,35 +28,19 @@ import os.path
 import seaborn as sns
 sns.set()
 
-
-# In[2]:
-
-
 #import functions
 
 from bending_setup import get_rms4cutout, get_ridge_txt_files,spline, get_fits_cutout, find_host_position, SB,spline_u, curvature, get_nearest_match
 from SourceSearchDR2 import GetPointList
 from ridge_toolkitDR2 import GetCutoutArray
 
-
-# In[3]:
-
-
 #get data
 with fits.open('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/AGNs_with_ridge.fits') as data:
     #data.info()
     catalogue = table.Table(data[1].data)
 
-
-# In[4]:
-
-
 #create empty arrays to append to later
 fails = []
-
-
-# In[ ]:
-
 
 for i in catalogue[0:30]:
     
@@ -182,20 +166,6 @@ for i in catalogue[0:30]:
     ax1.legend()
     plt.savefig('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/ridge_curvature_plots(no_mod)/%s-curvature_and_ridge.png' %(source_name))
 
-            
-            
-
-
-# ###### 
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
+   
 
 

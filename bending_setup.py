@@ -33,16 +33,12 @@ def get_nearest_match(array, value):
     
     array =  np.asarray(array)
     indx = (np.abs(array-value)).argmin()
-    print('value=',value)
-    print('match=',array[indx])
     
     return array[indx]
 
 def spline_u(ra,dec): #parametric spline function
     
     u = np.arange(len(ra))
-    
-    #cord (a.k.a cumulative) length
     p = np.array([ra,dec])
     dp = p[:, 1:] - p[:, :-1]
     l = (dp**2).sum(axis=0)

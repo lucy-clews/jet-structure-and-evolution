@@ -55,7 +55,7 @@ print('There are', number_of_hp, 'healpix directories')
 np.savetxt('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/hp_directories.txt', hp, fmt='%s',delimiter=' ')
 
 
-batch_number = 2 #will use sys.argv[1], but picked a number for testing
+batch_number = sys.argv[1]
 path = hp[batch_number] #directory for this job
 
 for x in glob.glob(path+'/ridges/*.txt'):

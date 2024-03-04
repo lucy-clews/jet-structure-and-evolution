@@ -39,9 +39,6 @@ from SourceSearchDR2 import GetPointList
 from ridge_toolkitDR2 import GetCutoutArray
 
 
-# In[23]:
-
-
 #create empty arrays to append to later
 fails = []
 hp = []
@@ -49,15 +46,10 @@ names=[]
 source_in_hp = []
 
 
-# In[24]:
-
-
 #get data
 with fits.open('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/AGNs_with_ridge.fits') as data:
     catalogue = table.Table(data[1].data)
 
-
-# In[25]:
 
 
 #make list of all hp directories
@@ -70,21 +62,12 @@ print('There are', number_of_hp, 'healpix directories')
 np.savetxt('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/hp_directories.txt', hp, fmt='%s',delimiter=' ')
 
 
-# In[17]:
-
-
 batch_number = 2 #will use sys.argv[1], but picked a number for testing
 path = hp[batch_number] #directory for this job
 
 for x in glob.glob(path+'/ridges/*.txt'):
     names.append(os.path.basename(x).split('_')[0])
-            
-
-
-# ###### 
-
-# In[ ]:
-
+        
 
 for name in names:
     
@@ -217,9 +200,5 @@ for name in names:
             ax1.legend()
             plt.savefig('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/ridge_curvature_plots(no_mod)/%s-curvature_and_ridge.png' %(source_name))
 
-
-# In[ ]:
-
-
-np.savetxt('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/source_in_hp/batch_%s-sources_with_ridge.txt' %batch_number, delimiter=' ')
+np.savetxt('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/source_in_hp/batch_%s-sources_with_ridge.txt' %batch_number, source_in_hp, delimiter=' ')
 

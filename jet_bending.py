@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 #import modules
 
 from astropy.io import fits
@@ -27,10 +24,6 @@ import os
 import pathlib
 import seaborn as sns
 sns.set()
-
-
-# In[2]:
-
 
 #import functions
 

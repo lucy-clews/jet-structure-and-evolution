@@ -70,7 +70,7 @@ for name in names:
         
         if source_name==name:
             
-            source_in_hp.append(source_name)
+            source_in_hp.append(source_name, dtype=object)
             
             LOFARx =float(i['RA_1']) 
             LOFARy = float(i['DEC_1'])

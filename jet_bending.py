@@ -193,5 +193,5 @@ for name in names:
             ax1.legend()
             plt.savefig('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/ridge_curvature_plots(no_mod)/%s-curvature_and_ridge.png' %(source_name))
 
-np.savetxt('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/source_in_hp/batch_%s-sources_with_ridge.txt' %batch_number, source_in_hp, delimiter=' ')
+        np.savetxt('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/source_in_hp/batch_%s-sources_with_ridge.txt' %batch_number, source_in_hp, delimiter=' ')
 

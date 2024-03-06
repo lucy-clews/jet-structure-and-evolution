@@ -128,8 +128,6 @@ for name in names:
             df =pd.DataFrame(data=d, columns=column_values,index=index_values)
             df.to_csv('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/SB_spline_csv/%s-SB_spline.csv' %source_name)
 
-
-
             plt.figure(figsize = (10,8))
             plt.plot(distance, average, ls = '-',color='b', label = 'Surface Brightness - Average Pixels')
             plt.plot(SB_splinex,SB_spliney, '--', color='k', label='Spline')
@@ -141,7 +139,6 @@ for name in names:
             plt.ylabel('Average Surface Brightness (mJy/beam)')
             plt.legend() 
             plt.savefig('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/SB_profiles/Profile-%s.png' %source_name)
-            plt.show()
 
             #ridge spline
 
@@ -175,7 +172,6 @@ for name in names:
             plt.xlabel('Length along the ridgeline (pix)')
             plt.ylabel('$\kappa$')
             plt.savefig('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/curvature_plots/%s-curavture.png' %(source_name))
-            plt.show()
 
             #curvature/spline plot
             fig, (ax1,ax2) = plt.subplots(1,2, figsize=(10,8))
@@ -193,5 +189,5 @@ for name in names:
             ax1.legend()
             plt.savefig('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/ridge_curvature_plots(no_mod)/%s-curvature_and_ridge.png' %(source_name))
 
-        np.savetxt('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/source_in_hp/batch_%s-sources_with_ridge.txt' %batch_number, source_in_hp, delimiter=' ')
+np.savetxt('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/source_in_hp/batch_%s-sources_with_ridge.txt' %batch_number, source_in_hp, delimiter=' ')
 

@@ -35,7 +35,6 @@ while i< len(source_names_with_duplicates):
         
 
 print('Number of sources matched=',len(source_names))
-print('source_names format=', source_names[1])
 
 # In[3]:
 
@@ -49,7 +48,6 @@ cleaned_all=[elem.strip() for elem in all_names]
 
 a = set(cleaned_all)
 b = set(source_names)
-print(a, b)
 missed = a.difference(b)
 missed = list(missed)
 print(len(missed))

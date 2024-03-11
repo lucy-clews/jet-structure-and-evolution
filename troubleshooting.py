@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[34]:
-
 
 from astropy.io import fits
 from astropy import table
@@ -11,10 +9,6 @@ import glob as glob
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set()
-
-
-# In[16]:
-
 
 path= '/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/source_in_hp'
 source_names_with_duplicates=[]
@@ -38,13 +32,9 @@ while i< len(source_names_with_duplicates):
         
 
 print('Number of sources matched=',len(source_names))
-#print('source_names format=', source_names[1])
 
 
-# In[20]:
-
-
-#missing sources
+#looking into failed/missing sources
 completed=[]
 missed=[]
 full_list = open('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/Data/source_with_ridge_names.txt')
@@ -53,18 +43,14 @@ cleaned_all=[elem.strip() for elem in all_names]
 
 a = set(cleaned_all)
 b = set(source_names)
-#print(a, b)
 missed = a.difference(b)
 missed = list(missed)
 
 common = a.intersection(b)
 common= list(common)
-#print(cleaned_missed)
+
 np.savetxt('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/Data/failed_sources.txt',missed, fmt='%s', delimiter=' ')
 np.savetxt('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/Data/names_w_ridge+curvature.txt', common, fmt='%s', delimiter=' ')
-
-
-# In[27]:
 
 
 # generate table with sources that have output
@@ -76,12 +62,8 @@ name = catalogue['Source_Name_1']
 for i in common:
     for row in catalogue[name==i]:
         t_1.add_row(row)
-        #print(i)
         
 t_1.write('AGNs_with_ridges_and_curvature_info.fits')
-
-
-# In[29]:
 
 
 #generate table of failed sources
@@ -93,10 +75,6 @@ for x in missed:
         t_2.add_row(row)
         
 t_2.write('failed_curvature_sources.fits')
-
-
-# In[66]:
-
 
 #exploring properties of failed sources
 with fits.open('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/Data/failed_curvature_sources.fits') as data:
@@ -145,10 +123,6 @@ plt.xlim(0,2500)
 plt.xlabel('Size (kpc)')
 plt.ylabel('Count')
 plt.title('Hist of source size for failed')
-
-
-# In[67]:
-
 
 #exploring properties of successful sources
 with fits.open('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/Data/AGNs_with_ridges_and_curvature_info.fits') as data:

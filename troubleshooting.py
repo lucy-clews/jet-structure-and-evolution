@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
-
-
 from astropy.io import fits
 import astropy.io.fits as pyfits
 from astropy import table
@@ -17,11 +14,6 @@ import csv
 import pandas as pd
 path= '/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2'
 
-
-# In[2]:
-
-
-path= '/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2'
 source_names_with_duplicates=[]
 source_names=[]
 tupels=[]
@@ -31,10 +23,7 @@ for file in glob.glob(path+'/SB_csv/*-SB.csv'):
         
 
 print('Number of sources matched=',len(source_names))
-#print('source_names format=', source_names[1])
 
-
-# In[3]:
 
 
 #missing sources
@@ -46,18 +35,13 @@ cleaned_all=[elem.strip() for elem in all_names]
 
 a = set(cleaned_all)
 b = set(source_names)
-#print(a, b)
 missed = a.difference(b)
 missed = list(missed)
 
 common = a.intersection(b)
 common= list(common)
-#print(cleaned_missed)
 np.savetxt('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/Data/failed_sources.txt',missed, fmt='%s', delimiter=' ')
 np.savetxt('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/Data/names_w_ridge+curvature.txt', common, fmt='%s', delimiter=' ')
-
-
-# In[4]:
 
 
 # generate table with sources that have output
@@ -75,10 +59,6 @@ t_1.write('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/Data/AGNs_with_ridg
 print('Success catalogue made')
 
 
-# In[ ]:
-
-
-
 #generate table of failed sources
 t_2 = table.Table(catalogue[0:0])
 name = catalogue['Source_Name_1']
@@ -89,9 +69,6 @@ for x in missed:
     
 t_2.write('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/Data/failed_curvature_sources.fits', overwrite=True)
 print('failed catalogue made')
-
-
-# In[ ]:
 
 
 #exploring properties of successful sources
@@ -126,10 +103,4 @@ success_cat.add_column(greater_than_5_points, name='>5_points')
 success_cat.write('/beegfs/lofar/lclews/DR2_ridgelines/full_sample_2/Data/AGNs_with_ridges_and_curvature_info.fits', overwrite=True)
 
 print('Quality boolean added')
-
-
-# In[ ]:
-
-
-
 
